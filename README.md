@@ -51,6 +51,7 @@ We looked at differences thinking that maybe the sentiments in the title and des
 Finally, we looked at the TF-IDF scores for the words that occured in over 10 articles and 70% or fewer articles. We did this to ensure that the words used weren't overly specific to a couple of submissions, but that they were still possibly indicative of what category the submission fell under. After that, we had about 2300 words, which was far too many words to stop there.
 
 We first tried latent semantic analysis to reduce the dimension introduced by the TF-IDF scores. However, given that we didn't want to introduce more than 20 new variables (due to our data set's smaller size), and 20 variables only explained about 11% of the variance observed in all 2300 words' TF-IDF scores. So, we turned to latent Dirichlet allocation. Using LDA, we looked at using between 10 and 20 topics, and 11 topics gave the most even distribution of submissions across topics (more topics tended to have useless topics with only 2 or 3 submissions in several topics). We then created a new feature using these topics. Since each submission is assigned 1 or more topics and each topic has a probability of being in that topic, we selected the topic with the highest probability for each submission, and that became our topic feature. 
+**We realized that we needed to one-hot encode the topics! We will go back and change this!**
 
 ## Modeling <a name="modeling"></a>
 After using SMOTE to account for class imbalance in our data (using the imblearn library), we dove into modeling.
